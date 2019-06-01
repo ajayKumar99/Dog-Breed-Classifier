@@ -2,9 +2,41 @@
 
 <section class="mdl-layout__tab-panel {% if page == 'index' %}is-active{% endif %}" id="quiz">
     <div class="page-content">
+        <center>
+            <br>
+            <br>
+            <br>
+            <h1 class="mb-0 mdl-color-text--primary">
+                Guess Me
+                <small class="text-muted">A Breed guessing game</small>
+            </h1>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <p class="lead">
+                This is a simple breed guessing game between you and <em>our trained convolutional neural network model</em>.
+                <br> Seems pretty complicated right?
+                <br> But, this is a simple model trained on the Google's inception model. It's is still getting trained and with every prediction, it is making itself better.
+                <br> To give this a try, press the button below.
+                <br>
+            </p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <a href="{{ url_for('.quiz') }}">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                    <i class="material-icons">arrow_forward_ios</i>
+                </button>
+            </a>
+            <br>
+            <br>
+            <br>
 
-
-
+        </center>
     </div>
 </section>
 <section class="mdl-layout__tab-panel {% if page == 'predict' %}is-active{% endif %}" id="predictor">
@@ -22,18 +54,12 @@
 
                 <center>
                     {% if search %}
-                    <div class="demo-card-square mdl-card mdl-shadow--2dp">
-                        <div class="mdl-card__title mdl-card--expand"></div>
-
-                        <div class="mdl-card__supporting-text" style="height: 155px;">
-                            <h2 class="mdl-card__title-text mdl-color-text--primary">{{ pred }}</h2>
-                            {{ summary }}
-                        </div>
-
-                        <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{ search }}" target="_blank">
-                                              Know more about them
-                                        </a>
+                    <div class="card" style="width: 28rem;">
+                        <img class="card-img-top" src="{{ img_data }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pred }}</h5>
+                            <p class="card-text">{{ summary }}</p>
+                            <a href="{{ search }}" class="btn btn-primary mdl-color--accent" target="_blank">Know more about them</a>
                         </div>
                     </div>
                     {% endif %}

@@ -17,7 +17,7 @@ def find_image(search_label):
         "silent_mode":True
     }
 
-    pre = "downloads/"
+    pre = "static/"
     name = ""
     ext = ".jpg"
 
@@ -26,6 +26,7 @@ def find_image(search_label):
     chars=string.ascii_uppercase + string.digits
     name = name.join(random.choice(chars) for _ in range(5))
     saveext = pre+name+ext
+    saved = name+ext
     print(saveext)
     output_img = urllib.request.urlretrieve(str(query), saveext)
-    return str(output_img[0])
+    return str(saved)

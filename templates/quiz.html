@@ -1,1 +1,95 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block main %}
+<section class="mdl-layout__tab-panel {% if page == 'index' %}is-active{% endif %}" id="quiz">
+    <div class="page-content">
+        <center>
+            <br>
+            <br>
+            <div class="card" style="width: 28rem;">
+                <img class="card-img-top" src="{{ url_for('static' , filename=rand_img) }}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text lead mdl-color-text--primary-dark">Guess Me!</p>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--4-col"></div>
+                <li class="mdl-list__item mdl-cell mdl-cell--4-col">
+                    <span class="mdl-list__item-primary-content">
+                                      <i class="material-icons  mdl-list__item-avatar">pets</i>
+                                      {{ choices[0] }}
+                                    </span>
+                    <span class="mdl-list__item-secondary-action">
+                                      <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-1">
+                                        <input type="radio" id="list-option-1" class="mdl-radio__button" name="options" value="1"/>
+                                      </label>
+                                    </span>
+                </li>
+                <div class="mdl-cell mdl-cell--4-col"></div>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--4-col"></div>
+                <li class="mdl-list__item mdl-cell mdl-cell--4-col">
+                    <span class="mdl-list__item-primary-content">
+                                          <i class="material-icons  mdl-list__item-avatar">pets</i>
+                                          {{ choices[1] }}
+                                        </span>
+                    <span class="mdl-list__item-secondary-action">
+                                          <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-2">
+                                            <input type="radio" id="list-option-2" class="mdl-radio__button" name="options" value="2"/>
+                                          </label>
+                                        </span>
+                </li>
+                <div class="mdl-cell mdl-cell--4-col"></div>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--4-col"></div>
+                <li class="mdl-list__item mdl-cell mdl-cell--4-col">
+                    <span class="mdl-list__item-primary-content">
+                                              <i class="material-icons  mdl-list__item-avatar">pets</i>
+                                              {{ choices[2] }}
+                                            </span>
+                    <span class="mdl-list__item-secondary-action">
+                                              <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-3">
+                                                <input type="radio" id="list-option-3" class="mdl-radio__button" name="options" value="3"/>
+                                              </label>
+                                            </span>
+                </li>
+                <div class="mdl-cell mdl-cell--4-col"></div>
+            </div>
+        </center>
+    </div>
+</section>
+<section class="mdl-layout__tab-panel {% if page == 'predict' %}is-active{% endif %}" id="predictor">
+    <br><br><br>
+    <div class="page-content">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--2-col"></div>
+            <div class="mdl-cell mdl-cell--8-col">
+                <form method="POST" action="{{ url_for('.predict' , _anchor='predictor') }}" enctype="multipart/form-data">
+                    <input type="file" name="file" accept="image/*" id="inbut-b1" class="file" data-browse-on-zone-click="true">
+                    <br>
+                    <center><input type="submit" value="predict" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"></center>
+                </form>
+                <br>
+
+                <center>
+                    {% if search %}
+                    <div class="card" style="width: 28rem;">
+                        <img class="card-img-top" src="{{ img_data }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pred }}</h5>
+                            <p class="card-text">{{ summary }}</p>
+                            <a href="{{ search }}" class="btn btn-primary mdl-color--accent" target="_blank">Know more about them</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </center>
+
+            </div>
+            <div class="mdl-cell mdl-cell--2-col"></div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

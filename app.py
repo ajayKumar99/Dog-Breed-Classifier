@@ -8,15 +8,24 @@ from tensorflow import keras
 import tensorflow.keras.backend as K
 from tensorflow.keras.preprocessing import image
 from model.labels import label_names
-from model.formatter import formatString
+import model.formatter as ft
 import model.load_model as lm
 import static.predictor as pd
 import wikipediaapi as wp
 import image_downloader as imd
+import random_initializer as rni
 
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
+choices = ['' , '' , '']
+i , j , z , k , l , m = rni.initializer()
+req_label = label_names[i]
+req_label = ft.formatString(req_label)
+choices[k] = req_label
+choices[l] = ft.formatString(label_names[j])
+choices[m] = ft.formatString(label_names[z])
 
 wiki = wp.Wikipedia('en')
 breed_descr = ''
@@ -27,11 +36,11 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 app.config['UPLOAD_FOLDER'] = os.path.join(APP_ROOT , 'static/')
 model , graph = lm.ModelInitializer()
 prediction_str =""
-
+page = 'index'
 
 @app.route('/')
 def index():
-    return render_template('materialize_index.html' , page = 'index')
+    return render_template('materialize_index.html' , page = page)
 
 @app.route('/predict' , methods=['GET' , 'POST'])
 def predict():
@@ -58,11 +67,15 @@ def predict():
     breed_descr = breed.summary
     #print(breed_descr.summary)
     img_file = 'static/'+filename
-    return render_template('materialize_index.html' , pred = prediction_str , img_data = img_file , page = 'predict' , summary = breed_descr , search = search)
+    page = 'predict'
+    return render_template('materialize_index.html' , pred = prediction_str , img_data = img_file , page = page , summary = breed_descr , search = search)
 
 @app.route('/quiz' , methods=['GET' , 'POST'])
 def quiz():
-    return render_template('quiz.html')
+    img_src = imd.find_image(req_label)
+    pred_target = 'static/'+img_src
+    prediction = pd.Predict(pred_target , model , graph)
+    return render_template('quiz.html' , rand_img=str(img_src) , pred=str(prediction) , correct=req_label , choices=choices , page=page)
 
 if __name__ == '__main__':
     app.run(debug=True)
