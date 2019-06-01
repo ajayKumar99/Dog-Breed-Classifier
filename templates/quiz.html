@@ -12,51 +12,54 @@
             </div>
             <br>
             <br>
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--4-col"></div>
-                <li class="mdl-list__item mdl-cell mdl-cell--4-col">
-                    <span class="mdl-list__item-primary-content">
+            <form method="POST" action="{{ url_for('result' , imgdata=rand_img , reqlabel=req_label) }}">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--4-col"></div>
+                    <li class="mdl-list__item mdl-cell mdl-cell--4-col">
+                        <span class="mdl-list__item-primary-content">
                                       <i class="material-icons  mdl-list__item-avatar">pets</i>
                                       {{ choices[0] }}
                                     </span>
-                    <span class="mdl-list__item-secondary-action">
+                        <span class="mdl-list__item-secondary-action">
                                       <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-1">
-                                        <input type="radio" id="list-option-1" class="mdl-radio__button" name="options" value="1"/>
+                                        <input type="radio" id="list-option-1" class="mdl-radio__button" name="options" value="0"/>
                                       </label>
                                     </span>
-                </li>
-                <div class="mdl-cell mdl-cell--4-col"></div>
-            </div>
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--4-col"></div>
-                <li class="mdl-list__item mdl-cell mdl-cell--4-col">
-                    <span class="mdl-list__item-primary-content">
+                    </li>
+                    <div class="mdl-cell mdl-cell--4-col"></div>
+                </div>
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--4-col"></div>
+                    <li class="mdl-list__item mdl-cell mdl-cell--4-col">
+                        <span class="mdl-list__item-primary-content">
                                           <i class="material-icons  mdl-list__item-avatar">pets</i>
                                           {{ choices[1] }}
                                         </span>
-                    <span class="mdl-list__item-secondary-action">
+                        <span class="mdl-list__item-secondary-action">
                                           <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-2">
-                                            <input type="radio" id="list-option-2" class="mdl-radio__button" name="options" value="2"/>
+                                            <input type="radio" id="list-option-2" class="mdl-radio__button" name="options" value="1"/>
                                           </label>
                                         </span>
-                </li>
-                <div class="mdl-cell mdl-cell--4-col"></div>
-            </div>
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--4-col"></div>
-                <li class="mdl-list__item mdl-cell mdl-cell--4-col">
-                    <span class="mdl-list__item-primary-content">
+                    </li>
+                    <div class="mdl-cell mdl-cell--4-col"></div>
+                </div>
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--4-col"></div>
+                    <li class="mdl-list__item mdl-cell mdl-cell--4-col">
+                        <span class="mdl-list__item-primary-content">
                                               <i class="material-icons  mdl-list__item-avatar">pets</i>
                                               {{ choices[2] }}
                                             </span>
-                    <span class="mdl-list__item-secondary-action">
+                        <span class="mdl-list__item-secondary-action">
                                               <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-3">
-                                                <input type="radio" id="list-option-3" class="mdl-radio__button" name="options" value="3"/>
+                                                <input type="radio" id="list-option-3" class="mdl-radio__button" name="options" value="2"/>
                                               </label>
                                             </span>
-                </li>
-                <div class="mdl-cell mdl-cell--4-col"></div>
-            </div>
+                    </li>
+                    <div class="mdl-cell mdl-cell--4-col"></div>
+                </div>
+                <input type="submit" value="Bhaw" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            </form>
         </center>
     </div>
 </section>

@@ -7,7 +7,7 @@ import string
 def find_image(search_label):
     response = google_images_download.googleimagesdownload()
 
-    search_query = search_label
+    search_query = search_label+'dogs'
 
     arg = {
         "keywords":search_query,

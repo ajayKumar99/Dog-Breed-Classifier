@@ -13,6 +13,7 @@ import model.load_model as lm
 import static.predictor as pd
 import wikipediaapi as wp
 import image_downloader as imd
+import random
 import random_initializer as rni
 
 
@@ -21,9 +22,6 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 choices = ['' , '' , '']
 i , j , z , k , l , m = rni.initializer()
-req_label = label_names[i]
-req_label = ft.formatString(req_label)
-choices[k] = req_label
 choices[l] = ft.formatString(label_names[j])
 choices[m] = ft.formatString(label_names[z])
 
@@ -72,10 +70,23 @@ def predict():
 
 @app.route('/quiz' , methods=['GET' , 'POST'])
 def quiz():
+    while True:
+        x = random.randint(0 , 119)
+        if x != z and x != j:
+            break
+    req_label = label_names[x]
+    req_label = ft.formatString(req_label)
+    choices[k] = req_label
     img_src = imd.find_image(req_label)
-    pred_target = 'static/'+img_src
-    prediction = pd.Predict(pred_target , model , graph)
-    return render_template('quiz.html' , rand_img=str(img_src) , pred=str(prediction) , correct=req_label , choices=choices , page=page)
+    return render_template('quiz.html' , rand_img=str(img_src) , choices=choices , page=page , req_label=req_label)
+
+@app.route('/result/<imgdata>/<reqlabel>' , methods=['GET' , 'POST'])
+def result(imgdata , reqlabel):
+    predtarget = 'static/'+str(imgdata)
+    model_ans = pd.Predict(predtarget , model , graph)
+    user_ans = choices[int(request.form['options']) ]
+    corr_ans = reqlabel
+    return render_template('result.html' , page=page , model_ans=model_ans , user_ans=user_ans , corr_ans=corr_ans , rand_img=str(imgdata))
 
 if __name__ == '__main__':
     app.run(debug=True)

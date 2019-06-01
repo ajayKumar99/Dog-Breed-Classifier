@@ -1,0 +1,79 @@
+{% extends "layout.html" %} {% block main %}
+<section class="mdl-layout__tab-panel {% if page == 'index' %}is-active{% endif %}" id="quiz">
+    <div class="page-content">
+        <center>
+            <br>
+            <br>
+            <div class="card" style="width: 28rem;">
+                <img class="card-img-top" src="{{ url_for('static' , filename=rand_img) }}" alt="Card image cap">
+
+            </div>
+            <br>
+            <br>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--6-col">
+                    <div class="card p-3 mb-2 bg-{% if user_ans == corr_ans %}success{% else %}danger{% endif %} text-white" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Your Answer</h5>
+                            <p class="lead">{{ user_ans }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col">
+                    <div class="card p-3 mb-2 bg-{% if model_ans == corr_ans %}success{% else %}danger{% endif %} text-white" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">AI's Answer</h5>
+                            <p class="lead">{{ model_ans }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h5 class="lead">My Breed is {{ corr_ans }}</h5>
+            <br>
+            <br>
+            <a href="{{ url_for('quiz') }}">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    Try Again!
+                </button>
+
+            </a>
+            <br>
+            <br>
+            <br>
+
+        </center>
+    </div>
+</section>
+<section class="mdl-layout__tab-panel {% if page == 'predict' %}is-active{% endif %}" id="predictor">
+    <br><br><br>
+    <div class="page-content">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--2-col"></div>
+            <div class="mdl-cell mdl-cell--8-col">
+                <form method="POST" action="{{ url_for('.predict' , _anchor='predictor') }}" enctype="multipart/form-data">
+                    <input type="file" name="file" accept="image/*" id="inbut-b1" class="file" data-browse-on-zone-click="true">
+                    <br>
+                    <center><input type="submit" value="predict" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"></center>
+                </form>
+                <br>
+
+                <center>
+                    {% if search %}
+                    <div class="card" style="width: 28rem;">
+                        <img class="card-img-top" src="{{ img_data }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pred }}</h5>
+                            <p class="card-text">{{ summary }}</p>
+                            <a href="{{ search }}" class="btn btn-primary mdl-color--accent" target="_blank">Know more about them</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </center>
+
+            </div>
+            <div class="mdl-cell mdl-cell--2-col"></div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
