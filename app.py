@@ -60,7 +60,9 @@ def predict():
     img_file = 'static/'+filename
     return render_template('materialize_index.html' , pred = prediction_str , img_data = img_file , page = 'predict' , summary = breed_descr , search = search)
 
-
+@app.route('/quiz' , methods=['GET' , 'POST'])
+def quiz():
+    return render_template('quiz.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
