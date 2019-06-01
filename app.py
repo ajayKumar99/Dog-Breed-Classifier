@@ -12,6 +12,7 @@ from model.formatter import formatString
 import model.load_model as lm
 import static.predictor as pd
 import wikipediaapi as wp
+import image_downloader as imd
 
 
 app = Flask(__name__)
