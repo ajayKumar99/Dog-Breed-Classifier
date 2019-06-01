@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <title>
+        Dog Breed Classifier
+    </title>
+</head>
+
+<body>
+    <center>
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
+        <h1 style="text-align: center;">DOG BREED CLASSIFIER</h1>
+        <br>
+        <form method="POST" action="{{ url_for('predict') }}" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" onchange="loadFile(event)">
+            <br>
+            <img id="output" />
+            <br>
+            <script>
+                var loadFile = function(event) {
+                    var output = document.getElementById('output');
+                    output.src = URL.createObjectURL(event.target.files[0]);
+                };
+            </script>
+            <input type="submit" value="predict">
+        </form>
+        <br>
+        <br>
+
+        <h3>{{ pred }}</h3>
+        <img src="{{ img_data }}">
+    </center>
+</body>
+
+</html>
