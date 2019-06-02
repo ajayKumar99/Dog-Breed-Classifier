@@ -1,9 +1,9 @@
-import tensorflow as tf
-import tensorflow_hub as hub
 from tensorflow import keras
 import tensorflow.keras.backend as K
 
 def ModelInitializer():
+    import tensorflow as tf
+    import tensorflow_hub as hub
     #Inception model's bottom layer as feature extractor.
     feature_extractor_url = 'https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3'
     #Loading the trained dog classification model
