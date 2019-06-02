@@ -12,9 +12,9 @@ import model.formatter as ft
 import model.load_model as lm
 import static.predictor as pd
 import wikipediaapi as wp
-import image_downloader as imd
+import static.test_images.image_downloader as imd
 import random
-import random_initializer as rni
+import static.random_initializer as rni
 
 
 app = Flask(__name__)
@@ -82,7 +82,7 @@ def quiz():
 
 @app.route('/result/<imgdata>/<reqlabel>' , methods=['GET' , 'POST'])
 def result(imgdata , reqlabel):
-    predtarget = 'static/'+str(imgdata)
+    predtarget = 'static/test_images/'+str(imgdata)
     model_ans = pd.Predict(predtarget , model , graph)
     user_ans = choices[int(request.form['options']) ]
     corr_ans = reqlabel
