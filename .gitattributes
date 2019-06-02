@@ -1,2 +1,2 @@
 training/* linguist-documentation
-templates/* linguist-vendored
+templates/layout.html linguist-vendored
